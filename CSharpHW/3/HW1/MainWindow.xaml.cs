@@ -1,17 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HW1
 {
@@ -141,7 +130,7 @@ namespace HW1
             }
             if (!DateTime.TryParse(bdTextBox.Text, out DateTime date) || !IsDateValid(bdTextBox.Text))
             {
-                bdValidInfo.Content = "Неверный формат даних. Требуется 00/00/0000";
+                bdValidInfo.Content = "Неверный формат данных. Требуется ДД/ММ/ГГГГ";
                 return false;
             }
             else if (0 < date.Day && date.Day < 32 || 0 < date.Month && date.Month < 13 || 1900 < date.Year && date.Year < DateTime.Now.Year) //0 < day < 32, 0 < month < 13, 1900 < year < current year

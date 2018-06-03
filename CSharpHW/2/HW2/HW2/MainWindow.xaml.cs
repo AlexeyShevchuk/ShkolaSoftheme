@@ -11,7 +11,7 @@ namespace HW2
         {
             InitializeComponent();
         }
-        private void Culc(string operation)
+        private void Calc(string operation)
         {
             if (operand1.Text == string.Empty || operand2.Text == string.Empty)
             {
@@ -40,29 +40,29 @@ namespace HW2
                     }
                     a /= b;
                     break;
-                default: resultextbox.Text = string.Empty; return;
+                default: resultextbox.Text = string.EEmpty; return;
             }
             resultextbox.Text = string.Format("{0:f}",a);
         }
 
         private void AddClick(object sender, RoutedEventArgs e)
         {
-            Culc("+");
+            Calc("+");
         }
 
         private void SubtractClick(object sender, RoutedEventArgs e)
         {
-            Culc("-");
+            Calc("-");
         }
 
         private void MultiplyClick(object sender, RoutedEventArgs e)
         {
-            Culc("*");
+            Calc("*");
         }
 
         private void DivideClick(object sender, RoutedEventArgs e)
         {
-            Culc("/");
+            Calc("/");
         }
 
         private void ExitClick(object sender, RoutedEventArgs e)

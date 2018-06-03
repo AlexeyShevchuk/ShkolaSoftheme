@@ -1,0 +1,18 @@
+﻿<Window x:Class="HW2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HW2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="400">
+    <Grid>
+        <Button Name="start" Content="Start" Margin="10,69,0,0" HorizontalAlignment="Left" Width="75" Click="StartClick" Height="20" VerticalAlignment="Top"/>
+        <TextBox Name="dataTextBox" Margin="10,41,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="120" Height="23" VerticalAlignment="Top"/>
+        <Image Name="img" HorizontalAlignment="Right" Margin="0,0,10,226" Width="189" Height="183" VerticalAlignment="Bottom"/>
+        <Label Content="Set date DD/MM/YYYY" Margin="10,10,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="131"/>
+        <Button Name="exit" Content="Exit" Margin="0,0,10,10" HorizontalAlignment="Right" Width="75" Height="20" VerticalAlignment="Bottom" Click="ExitClick"/>
+        <Label Name="zodiakName" Content="Zodiak Name" Margin="0,198,65,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="81"/>
+
+    </Grid>
+</Window>
