@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HW
 {
@@ -22,11 +18,11 @@ namespace HW
             }
 
             array[array.Length - 1] = unique;
-
+            var temp = 0;
             for (int j, i = array.Length - 1; i >= 1; i--)
             {
                 j = rand.Next(i + 1);
-                var temp = array[j];
+                temp = array[j];
                 array[j] = array[i];
                 array[i] = temp;
             }
@@ -73,6 +69,7 @@ namespace HW
                 return SearchForPart(arrNotEven, notEvenLenght);
             }
         }
+
         static int? SearchForPart(int?[] arr, int lenght)
         {
             for (int i = 0; i < lenght; i++)
