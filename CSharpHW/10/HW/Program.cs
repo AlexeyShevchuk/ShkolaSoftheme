@@ -43,43 +43,43 @@ namespace HW
             var arrEven = new int?[arr.Length];
             var arrNotEven = new int?[arr.Length];
 
-            var evenLenght = 0;
-            var notEvenLenght = 0;
+            var evenLength = 0;
+            var notEvenLength = 0;
 
             for (int i = 0; i < arr.Length; i++)
             {
                 if (arr[i] % 2 == 0)
                 {
-                    arrEven[evenLenght] = arr[i];
-                    evenLenght++;
+                    arrEven[evenLength] = arr[i];
+                    evenLength++;
                 }
                 else
                 {
-                    arrNotEven[notEvenLenght] = arr[i];
-                    notEvenLenght++;
+                    arrNotEven[notEvenLength] = arr[i];
+                    notEvenLength++;
                 }
             }
 
-            if (notEvenLenght % 2 == 0)
+            if (notEvenLength % 2 == 0)
             {
-                return SearchForPart(arrEven, evenLenght);
+                return SearchForPart(arrEven, evenLength);
             }
             else
             {
-                return SearchForPart(arrNotEven, notEvenLenght);
+                return SearchForPart(arrNotEven, notEvenLength);
             }
         }
 
-        static int? SearchForPart(int?[] arr, int lenght)
+        static int? SearchForPart(int?[] arr, int length)
         {
-            for (int i = 0; i < lenght; i++)
+            for (int i = 0; i < length; i++)
             {
                 if (arr[i] == null)
                 {
                     continue;
                 }
 
-                for (int j = i + 1; j < lenght; j++)
+                for (int j = i + 1; j < length; j++)
                 {
                     if (arr[i] == arr[j])
                     {
@@ -88,7 +88,7 @@ namespace HW
                         break;
                     }
 
-                    if (arr[i] != arr[j] && j == lenght - 1)
+                    if (arr[i] != arr[j] && j == length - 1)
                     {
                         return arr[i];
                     }
