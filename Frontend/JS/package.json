@@ -1,0 +1,30 @@
+{
+  "name": "internship2018-1",
+  "version": "0.0.1",
+  "description": "This is test project for Internship",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server ./src",
+    "build": "webpack ./src/index.js ./src/assets/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/software-kiev/shkola1010_public.git"
+  },
+  "keywords": [
+    "html",
+    "css",
+    "javascript"
+  ],
+  "author": "Softheme",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/software-kiev/shkola1010_public/issues"
+  },
+  "homepage": "https://github.com/software-kiev/shkola1010_public#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "webpack": "^3.12.0",
+    "http-server": "^0.11.1"
+  }
+}
