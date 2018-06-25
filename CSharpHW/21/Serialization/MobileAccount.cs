@@ -24,27 +24,16 @@ namespace Delegates
 
         [DataMember]
         //[XmlAttribute("Name")]
-        [Required(ErrorMessage = "Поле должно быть установлено")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Длина строки должна быть от 3 до 50 символов")]
-        [Display(Name = "Имя")]
         public string Name { get; set; }
 
         [DataMember]
         //[XmlAttribute("Surname")]
-        [Required(ErrorMessage = "Поле должно быть установлено")]
-        [StringLength(50, MinimumLength = 3, ErrorMessage = "Длина строки должна быть от 3 до 50 символов")]
-        [Display(Name = "Фамилия")]
         public string Surname { get; set; }
 
         [DataMember]
-        [Display(Name = "Дата")]
-        //[XmlAttribute("BirthDay")]
-        [Range(typeof(DateTime), "01/01/1900", "01/01/2019", ErrorMessage = "Недопустимая дата")]
         public DateTime BirthDay { get; set; }
 
         [DataMember]
-        [RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}", ErrorMessage = "Некорректный адрес")]
-        [Display(Name = "Email")]
         //[XmlAttribute("Email")]
         public string Email { get; set; }
 
@@ -52,8 +41,8 @@ namespace Delegates
         public int Id { get => _id; set => _id = value; }
 
         [DataMember]
-        private SerializableDictionary<string, MobileAccount> _contacts = new SerializableDictionary<string, MobileAccount>();
-        public SerializableDictionary<string, MobileAccount> Contacts { get => _contacts; set => _contacts = value; }
+        private SerializableDictionary<string, int> _contacts = new SerializableDictionary<string, int>();
+        public SerializableDictionary<string, int> Contacts { get => _contacts; set => _contacts = value; }
 
         public MobileAccount()
         {
@@ -79,11 +68,11 @@ namespace Delegates
 
         public bool AddMobileAccount(string name, MobileAccount mobileAccount)
         {
-            if (Contacts.ContainsValue(mobileAccount))
+            if (Contacts.ContainsValue(mobileAccount.Id))
             {
                 return false;
             }
-            Contacts.Add(name, mobileAccount);
+            Contacts.Add(name, mobileAccount.Id);
             return true;
         }
 
@@ -91,7 +80,7 @@ namespace Delegates
         {
             try
             {
-                var name = Contacts.First(x => x.Value.Id == id);
+                var name = Contacts.First(x => x.Value == id);
 
                 return true;
             }
@@ -105,7 +94,7 @@ namespace Delegates
         {
             try
             {
-                var name = Contacts.First(x => x.Value.Id == id);
+                var name = Contacts.First(x => x.Value == id);
 
                 return name.Key;
             }

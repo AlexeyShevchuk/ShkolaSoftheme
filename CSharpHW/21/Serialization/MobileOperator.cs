@@ -6,19 +6,21 @@ using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using ProtoBuf;
 
 namespace Delegates
 {
     [Serializable]
     [DataContract]
     [XmlRoot("MobileOperator")]
+    [ProtoContract]
     public class MobileOperator
     {
         [DataMember]
+        [ProtoMember(1)]
         List<MobileAccount> _list = new List<MobileAccount>();
         [NonSerialized]
         List<ActionLog> _log = new List<ActionLog>();
@@ -212,26 +214,46 @@ namespace Delegates
             }
         }
 
-        //public void XMLSerialize()
-        //{
-        //    var formatter = new XmlSerializer(typeof(List<MobileAccount>));
+        public void XMLSerialize()
+        {
+            var formatter = new XmlSerializer(typeof(List<MobileAccount>));
 
-        //    using (var fs = new FileStream("XMLData.xml", FileMode.OpenOrCreate))
-        //    {
-        //            formatter.Serialize(fs, _list);
-        //    }
-        //}
+            using (var fs = new FileStream("XMLData.xml", FileMode.OpenOrCreate))
+            {
+                formatter.Serialize(fs, _list);
+            }
+        }
 
-        //public void XMLDeserialize()
-        //{
-        //    var formatter = new XmlSerializer(typeof(MobileAccount));
-        //    using (var fs = new FileStream("XMLData.xml", FileMode.OpenOrCreate))
-        //    {
-        //        foreach (var item in (List<MobileAccount>)formatter.Deserialize(fs))
-        //        {
-        //            AddMobileAccount(item);
-        //        }
-        //    }
-        //}
+        public void XMLDeserialize()
+        {
+            var formatter = new XmlSerializer(typeof(List<MobileAccount>));
+            using (var fs = new FileStream("XMLData.xml", FileMode.OpenOrCreate))
+            {
+                foreach (var item in (List<MobileAccount>)formatter.Deserialize(fs))
+                {
+                    AddMobileAccount(item);
+                }
+            }
+        }
+
+        public void ProtoBufSerialize()
+        {
+            using (var fs = new FileStream("ProtoBufData.ptb", FileMode.OpenOrCreate))
+            {
+                Serializer.Serialize(fs, _list);
+            }
+        }
+
+        public void ProtoBufDeserialize()
+        {
+            using (var fs = new FileStream("ProtoBufData.ptb", FileMode.OpenOrCreate))
+            {
+                var list = (List<MobileAccount>)Serializer.Deserialize(typeof(List<MobileAccount>), fs);
+                foreach (var item in list)
+                {
+                    AddMobileAccount(item);
+                }
+            }
+        }
     }
 }

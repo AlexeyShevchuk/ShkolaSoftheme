@@ -17,15 +17,6 @@ namespace Delegates
             var mobile8 = new MobileAccount("Alex8","Shevchuk8",DateTime.Today,"alex8@ukr.net");
             var mobile9 = new MobileAccount("Alex9","Shevchuk9",DateTime.Today,"alex9@ukr.net");
 
-            mobile1.Name = "1";
-            mobile5.Contacts.Add("Alex1", mobile1);
-            mobile3.Contacts.Add("Alex1", mobile1);
-            mobile2.Contacts.Add("Alex1", mobile1);
-
-            mobile1.Contacts.Add("mobile5", mobile5);
-            mobile1.Contacts.Add("mobile3", mobile3);
-            mobile1.Contacts.Add("mobile2", mobile2);
-
             mobileOperator.AddMobileAccount(mobile1);
             mobileOperator.AddMobileAccount(mobile2);
             mobileOperator.AddMobileAccount(mobile3);
@@ -35,6 +26,15 @@ namespace Delegates
             mobileOperator.AddMobileAccount(mobile7);
             mobileOperator.AddMobileAccount(mobile8);
             mobileOperator.AddMobileAccount(mobile9);
+
+            mobile1.Name = "1";
+            mobile5.Contacts.Add("Alex1", mobile1.Id);
+            mobile3.Contacts.Add("Alex1", mobile1.Id);
+            mobile2.Contacts.Add("Alex1", mobile1.Id);
+
+            mobile1.Contacts.Add("mobile5", mobile5.Id);
+            mobile1.Contacts.Add("mobile3", mobile3.Id);
+            mobile1.Contacts.Add("mobile2", mobile2.Id);
 
             mobile1.CallOut(mobile3.Id);
             mobile2.CallOut(mobile3.Id);
@@ -109,6 +109,34 @@ namespace Delegates
             ticks = DateTime.Now.Ticks;
             mobileOperator.JsonDeserialize();
             Console.WriteLine("JsonDeserialize - {0}", DateTime.Now.Ticks - ticks);
+            mobileOperator.GetStaticstic();
+            foreach (var item in mobile1.Contacts)
+            {
+                Console.WriteLine(item.Key);
+            }
+
+            ticks = DateTime.Now.Ticks;
+            mobileOperator.XMLSerialize();
+            Console.WriteLine("XMLSerialize - {0}", DateTime.Now.Ticks - ticks);
+            mobileOperator.Clear();
+
+            ticks = DateTime.Now.Ticks;
+            mobileOperator.XMLDeserialize();
+            Console.WriteLine("XMLDeserialize - {0}", DateTime.Now.Ticks - ticks);
+            mobileOperator.GetStaticstic();
+            foreach (var item in mobile1.Contacts)
+            {
+                Console.WriteLine(item.Key);
+            }
+
+            ticks = DateTime.Now.Ticks;
+            mobileOperator.ProtoBufSerialize();
+            Console.WriteLine("ProtoBufSerialize - {0}", DateTime.Now.Ticks - ticks);
+            mobileOperator.Clear();
+
+            ticks = DateTime.Now.Ticks;
+            mobileOperator.ProtoBufDeserialize();
+            Console.WriteLine("ProtoBufDeserialize - {0}", DateTime.Now.Ticks - ticks);
             mobileOperator.GetStaticstic();
             foreach (var item in mobile1.Contacts)
             {
