@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{498F32E6-3FA1-49BC-9F5D-EBB174EB6449}</ProjectGuid>
+    <ProjectGuid>{A8F4D305-A11E-4232-8F1C-0F23F7D3B455}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Delegates</RootNamespace>
-    <AssemblyName>Delegates</AssemblyName>
+    <RootNamespace>Attributes</RootNamespace>
+    <AssemblyName>Attributes</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -33,6 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,8 +45,10 @@
   <ItemGroup>
     <Compile Include="AccountEventArgs.cs" />
     <Compile Include="Action.cs" />
+    <Compile Include="ActionLog.cs" />
     <Compile Include="IMobile.cs" />
     <Compile Include="MobileAccount.cs" />
+    <Compile Include="MobileAccountAttribute.cs" />
     <Compile Include="MobileOperator.cs" />
     <Compile Include="MobileOperatorDemo.cs" />
     <Compile Include="Program.cs" />

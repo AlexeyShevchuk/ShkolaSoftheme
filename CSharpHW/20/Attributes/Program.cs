@@ -1,4 +1,6 @@
-﻿namespace Delegates
+﻿using Delegates;
+
+namespace Attributes
 {
     class Program
     {

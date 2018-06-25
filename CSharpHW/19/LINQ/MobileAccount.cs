@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Delegates
 {
@@ -33,26 +35,30 @@ namespace Delegates
         
         private bool SearchById(int id)
         {
-            foreach (var item in Contacts)
+            try
             {
-                if (item.Value.Id == id)
-                {
-                    return true;
-                }
+                var name = Contacts.First(x => x.Value.Id == id);
+
+                return true;
             }
-            return false;
+            catch (InvalidOperationException)
+            {
+                return false;
+            }
         }
 
         private string GetNameById(int id)
         {
-            foreach (var item in Contacts)
+            try
             {
-                if (item.Value.Id == id)
-                {
-                    return item.Key;
-                }
+                var name = Contacts.First(x => x.Value.Id == id);
+
+                return name.Key;
             }
-            return string.Empty;
+            catch (InvalidOperationException)
+            {
+                return null;
+            }
         }
 
         public void SMSOut(int toMobileId)

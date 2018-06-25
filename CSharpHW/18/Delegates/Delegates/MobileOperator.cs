@@ -1,21 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Delegates
 {
-    class MobileOperator
+    public class MobileOperator
     {
-
         List<MobileAccount> _list = new List<MobileAccount>();
 
-        public void AddMobileAccount(MobileAccount mobileAccount)
+        public bool AddMobileAccount(MobileAccount mobileAccount)
         {
+            if (_list.Exists(x => x.Id == mobileAccount.Id))
+            {
+                return false;
+            }
             _list.Add(mobileAccount);
             mobileAccount.SendSMS += OnSMS;
             mobileAccount.Called += OnCall;
+            mobileAccount.GotSMS += OnGotSMS;
+            mobileAccount.GotCall += OnGotCall;
+            return true;
         }
 
         private void OnSMS(object sender, AccountEventArgs e)
@@ -38,6 +41,16 @@ namespace Delegates
             }
         }
 
+        private void OnGotSMS(object sender, AccountEventArgs e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
+        private void OnGotCall(object sender, AccountEventArgs e)
+        {
+            Console.WriteLine(e.Message);
+        }
+
         private bool SearchById(int id)
         {
             foreach (var item in _list)
@@ -50,16 +63,19 @@ namespace Delegates
             return false;
         }
 
-
-        public void Route(int idFirst, int idSecond, Action action)
+        public void Route(int fromMobileId, int toMobile, Action action)
         {
-            if (!SearchById(idSecond))
+            if (!SearchById(toMobile))
             {
                 Console.WriteLine("Wrong number!");
             }
             else
             {
-                Console.WriteLine("Id {0} | Actoin {1}", idFirst, action);
+                switch (action) {
+                    case Action.SMS: _list.Find(x => x.Id == toMobile).SMSIn(fromMobileId); break;
+                    case Action.Call: _list.Find(x => x.Id == toMobile).CallIn(fromMobileId); break;
+                }
+                Console.WriteLine("Id {0} | Actoin {1}", fromMobileId, action);
             }
         }
     }
