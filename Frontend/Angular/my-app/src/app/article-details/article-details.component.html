@@ -1,7 +1,15 @@
 <div class="thumbnail">
-    <div class="caption">
-        <article>
-
-        </article>
-   </div>
-</div>
+        <div class="caption">
+            <h1 (click) = "changeColor()" [style.color]="color">
+                {{ article.id }}
+            </h1>
+            <p>
+                <b>Author: </b>
+                {{ article.title }}
+            </p>
+            <p>
+                <b>Author: </b>
+                {{ article.shortDescription }}
+            </p>
+        </div>
+    </div>
