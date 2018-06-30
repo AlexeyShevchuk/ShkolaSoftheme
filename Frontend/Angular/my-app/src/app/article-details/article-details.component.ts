@@ -8,41 +8,21 @@ import { ArticleDetailsModel } from './article-details.model';
     styleUrls: ['./article-details.component.css']
 })
 
-export class ArticleDetailsComponent implements OnInit{
-    article: ArticleDetailsModel
-    color: string
-    ngOnInit(){
-    this.article =
-    {
-      id: "Стаття з рубрики: НОВИНИ",
-      title: "Як знімали рекламу Apple в Ураїні",
-      shortDescription: "Зазначте рубрику"
-    }; 
-    this.color = "green";
+export class ArticleDetailsComponent implements OnInit {
+    article: ArticleDetailsModel;
+    color: string;
+    @Input()
+    heading: string;
+    ngOnInit() {
+    this.article = {
+      id: 'НОВИНИ',
+      title: 'Як знімали рекламу Apple в Ураїні',
+      shortDescription: 'Режисер кліпу Rolling in the Deep, скейтер з Іспанії та оператор на роликах з Південної Африки.'
+    };
+    this.color = 'black';
     }
-
     @Output()
-	changeColor() {
-		this.color = "red";
-	}
+        changeColor() {
+            this.color = 'grey';
+        }
 }
-
-// export class ArticleDetailsComponent {
-
-// 	article: {
-// 		id: string,
-// 		title: string,
-// 		shortDescription: string
-//     };
-
-//     start()
-//     {
-//         this.article.id = "1",
-//         this.article.title = "2"
-//         this.article.shortDescription = "2"
-//     }
-
-// 	changeColor() {
-		
-// 	}
-// }
