@@ -6,8 +6,12 @@ namespace HW1
     {
         static void Main(string[] args)
         {
+            var name = "Alex";
+
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Alex");
+            Console.WriteLine(name);
+            Console.ResetColor();;
+
             Console.ReadKey();
         }
     }

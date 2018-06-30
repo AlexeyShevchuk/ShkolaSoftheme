@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 
-namespace HM2Console
+namespace HM2Conslole
 {
     class Program
     {
@@ -12,8 +9,10 @@ namespace HM2Console
         {
             Console.Write("a = ");
             var aInput = Console.ReadLine();
+
             Console.Write("operation: ");
             var operation = Console.ReadLine();
+
             Console.Write("b = ");
             var bInput = Console.ReadLine();
 
@@ -22,30 +21,43 @@ namespace HM2Console
                 return;
             }
 
-            if (!double.TryParse(aInput, out double a) || !double.TryParse(bInput, out double b))
+            if (!double.TryParse(aInput, out var a) || !double.TryParse(bInput, out var b))
             {
                 return;
             }
 
-            Console.WriteLine(string.Format("{0:f}", Calculator(a, b, operation)));
+            try
+            {
+                Console.WriteLine(string.Format(CultureInfo.CurrentCulture, "{0:f}", Calculator(a, b, operation)));
+            }
+            catch (DivideByZeroException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            catch (InvalidOperationException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
             Console.ReadKey();
         }
+
         public static double Calculator(double a, double b, string operation)
         {
             switch (operation)
             {
-                case "+": a += b; break;
-                case "-": a -= b; break;
-                case "*": a *= b; break;
-                case "/":
-                    if (b == 0)
-                    {
-                        return 0;
-                    }
-                    a /= b;
+                case "+": a += b;
                     break;
-                default: return 0;
+                case "-": a -= b;
+                    break;
+                case "*": a *= b;
+                    break;
+                case "/": a /= b;
+                    break;
+                default:
+                    throw new InvalidOperationException("Operation not supported");
             }
+
             return a;
         }
     }

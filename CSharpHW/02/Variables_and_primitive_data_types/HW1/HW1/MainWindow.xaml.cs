@@ -1,7 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-
 namespace HW1
 {
     /// <summary>
@@ -15,18 +14,42 @@ namespace HW1
         }
         private void ListBoxTypeSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedItem = (ListBoxItem)type.SelectedItem;
-
-            switch (selectedItem.Content.ToString())
+            if (!(type.SelectedItem is ListBoxItem selectedItem))
             {
-                case "sbyte": ShowSbyteValue(); break;
-                case "long": ShowLongValue(); break;
-                case "short": ShowShortValue(); break;
-                case "int": ShowIntValue(); break;
-                case "byte": ShowByteValue(); break;
-                case "ushort": ShowUshortValue(); break;
-                case "uint": ShowUintlValue(); break;
-                case "ulong": ShowUlongValue(); break;
+                return;
+            }
+
+            if (selectedItem.Content.ToString() == "sbyte")
+            {
+                ShowSbyteValue();
+            }
+            else if (selectedItem.Content.ToString() == "long")
+            {
+                ShowLongValue();
+            }
+            else if (selectedItem.Content.ToString() == "short")
+            {
+                ShowShortValue();
+            }
+            else if (selectedItem.Content.ToString() == "int")
+            {
+                ShowIntValue();
+            }
+            else if (selectedItem.Content.ToString() == "byte")
+            {
+                ShowByteValue();
+            }
+            else if (selectedItem.Content.ToString() == "ushort")
+            {
+                ShowUshortValue();
+            }
+            else if (selectedItem.Content.ToString() == "uint")
+            {
+                ShowUintlValue();
+            }
+            else if (selectedItem.Content.ToString() == "ulong")
+            {
+                ShowUlongValue();
             }
         }
 
@@ -80,7 +103,7 @@ namespace HW1
 
         private void QuitClick(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }
