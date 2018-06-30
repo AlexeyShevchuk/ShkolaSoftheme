@@ -6,7 +6,6 @@ function showMessage() {
 
 export function confirmAge() {
     var age = prompt("What's your age?");
-
     if (age >= 18) {
         showMessage();
     }
@@ -21,7 +20,6 @@ function filterArray(numbers, min, max) {
     numbers.forEach(element => {
         if (element >= min && element <= max) {
             newArray.push(element);
-
         }
     });
     return newArray;
