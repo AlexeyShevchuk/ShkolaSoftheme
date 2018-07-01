@@ -1,0 +1,7 @@
+<div clas="container">
+      <div *ngIf="articles">
+        <div class="articles-container" *ngFor="let item of articles">
+          <app-article-details [article]="item"></app-article-details>
+        </div>
+    </div>
+</div> 
