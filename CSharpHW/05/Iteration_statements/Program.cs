@@ -14,34 +14,49 @@ namespace HW1
                 Console.WriteLine("2 - квадрат");
                 Console.WriteLine("3 - ромб");
                 Console.WriteLine("4 - Выход");
+
                 if (!int.TryParse(Console.ReadLine(), out var chouse))
                 {
                     Console.Clear();
                     continue;
                 }
+
                 if (chouse == 4)
                 {
                     flag = false;
                     continue;
                 }
+
                 Console.WriteLine("Выберите размерность:");
+
                 if (!int.TryParse(Console.ReadLine(), out var length))
                 {
                     Console.Clear();
                     continue;
                 }
+
                 switch (chouse)
                 {
-                    case 1: Triangle(length); break;
-                    case 2: Square(length); break;
-                    case 3: Romb(length); break;
-                    default: flag = false; continue;
+                    case 1:
+                        Triangle(length);
+                        break;
+                    case 2:
+                        Square(length);
+                        break;
+                    case 3:
+                        Romb(length);
+                        break;
+                    default:
+                        flag = false;
+                        continue;
                 }
+
                 Console.WriteLine("Для продолжения нажмите кнопку...");
                 Console.ReadKey();
                 Console.Clear();
 
-            } while (flag) ;
+            } while (flag);
+
             Console.ReadKey();
         }
 
@@ -65,6 +80,7 @@ namespace HW1
                 {
                     Console.Write("*");
                 }
+
                 Console.WriteLine();
             }
         }
@@ -75,7 +91,9 @@ namespace HW1
             {
                 length++;
             }
-            int center = length / 2;
+
+            var center = length / 2;
+
             for (int i = 0; i < length; i++)
             {
                 for (int j = 0; j < length; j++)
@@ -103,6 +121,7 @@ namespace HW1
                         }
                     }
                 }
+
                 Console.WriteLine();
             }
         }
