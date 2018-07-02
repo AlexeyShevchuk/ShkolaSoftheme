@@ -1,6 +1,7 @@
-<div>
+<a routerLink="article.title" routerLinkActive="active"><span>**</span>{{ article.title }}</a>
+<div class="article-container" *ngIf="article; else loading">
     <p (click) = "changeColor()" [style.color]="color">
-        Стаття з рубрики: {{ article.id }}
+        Стаття з рубрики: {{ heading }}
     </p>
     <h1>{{ article.title }}</h1>
     <p>{{ article.shortDescription }}</p>
@@ -12,3 +13,4 @@
         {{heading}}
     </p>
 </div>
+<ng-template #loading>Loading...</ng-template>

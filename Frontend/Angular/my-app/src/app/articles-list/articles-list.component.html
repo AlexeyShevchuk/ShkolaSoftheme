@@ -1,7 +1,7 @@
-<div clas="container">
-      <div *ngIf="articles">
-        <div class="articles-container" *ngFor="let item of articles">
-          <app-article-details [article]="item"></app-article-details>
-        </div>
-    </div>
-</div> 
+<div *ngIf="articles; else loading">
+	<div class="articles-container" *ngFor="let item of articles">
+	  <a class="noDecoration" [routerLink]="[item.id]">{{item.title}}</a>
+	  <p>{{item.shortDescription}}</p>
+	</div>
+</div>
+<ng-template #loading>Loading...</ng-template>

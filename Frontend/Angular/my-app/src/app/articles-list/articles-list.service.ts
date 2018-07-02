@@ -1,29 +1,20 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
 import { ArticleDetailsModel } from './article-details/article-details.model';
 
-export class ArticlesListService {
-    articles: ArticleDetailsModel[] = [{
-        id: 'НОВИНИ',
-        title: 'Як знімали рекламу Apple в Ураїні',
-        shortDescription: 'Режисер кліпу Rolling in the Deep, скейтер з Іспанії та оператор на роликах з Південної Африки.'
-    },
-    {
-        id: 'НОВИНИ',
-        title: 'Як знімали рекламу Apple в Ураїні',
-        shortDescription: 'Режисер кліпу Rolling in the Deep, скейтер з Іспанії та оператор на роликах з Південної Африки.'
-    },
-    {
-        id: 'НОВИНИ',
-        title: 'Як знімали рекламу Apple в Ураїні',
-        shortDescription: 'Режисер кліпу Rolling in the Deep, скейтер з Іспанії та оператор на роликах з Південної Африки.'
-    },
-    {
-        id: 'НОВИНИ',
-        title: 'Як знімали рекламу Apple в Ураїні',
-        shortDescription: 'Режисер кліпу Rolling in the Deep, скейтер з Іспанії та оператор на роликах з Південної Африки.'
-    }
-    ];
+const requestUrl = 'http://localhost:3000';
 
-    getArticles(): ArticleDetailsModel[] {
-        return this.articles;
+@Injectable()
+export class ArticlesListService {
+    constructor(private http: HttpClient) { }
+
+    getArticles(): Observable<ArticleDetailsModel[]> {
+        return this.http.get<ArticleDetailsModel[]>(`${requestUrl}/articles`);
+    }
+
+    getArticle(id: string): Observable<ArticleDetailsModel> {
+        return this.http.get<ArticleDetailsModel>(`${requestUrl}/articles/${id}`);
     }
 }
