@@ -13,15 +13,20 @@ namespace HW1
             if (!DateTime.TryParse(str, out var dateBirth))
             {
                 Console.WriteLine("Wrong input!");
+                Console.ReadKey();
                 return;
             }
+
             Console.WriteLine(ZodiakIdentify(dateBirth));
+
             Console.ReadKey();
         }
         private static string ZodiakIdentify(DateTime dateBirth)
         {
             var result = string.Empty;
+
             string[] zodiaks = { "Овен", "Телец", "Близнецы", "Рак", "Лев", "Дева", "Весы", "Скорпион", "Стрелец", "Козерог", "Водолей", "Рыбы" };
+
             if ((dateBirth.Month == 3 && dateBirth.Day >= 21) || (dateBirth.Month == 4 && dateBirth.Day <= 20))
             {
                 result = zodiaks[0];
@@ -81,6 +86,7 @@ namespace HW1
             {
                 result = zodiaks[11];
             }
+
             return result;
         }
     }

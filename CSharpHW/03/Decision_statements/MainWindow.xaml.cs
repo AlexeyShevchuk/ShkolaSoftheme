@@ -4,9 +4,6 @@ using System.Windows;
 
 namespace HW1
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -31,6 +28,7 @@ namespace HW1
             {
                 return false;
             }
+
             foreach (var item in str)
             {
                 if ((item >= 65 && item <= 90) || (item >= 97 && item <= 122))
@@ -42,6 +40,7 @@ namespace HW1
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -51,6 +50,7 @@ namespace HW1
             {
                 return false;
             }
+
             foreach (var item in str)
             {
                 if (item >= 48 && item <= 57)
@@ -62,6 +62,7 @@ namespace HW1
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -71,6 +72,7 @@ namespace HW1
             {
                 return false;
             }
+
             foreach (var item in str)
             {
                 if (item >= 47 && item <= 57)
@@ -82,6 +84,7 @@ namespace HW1
                     return false;
                 }
             }
+
             return true;
         }
 
@@ -89,9 +92,10 @@ namespace HW1
         {
             if (fnTextBox.Text.Equals(string.Empty))
             {
-                fnValidInfo.Content = "Пустая запись";
+                fnValidInfo.Content = "Empty entry";
                 return false;
             }
+
             if (fnTextBox.Text.Length > 254 || !IsOnlyLetters(fnTextBox.Text)) // only letters, length < 255 symbols
             {
                 fnValidInfo.Content = "Only letters and length < 255 symbols";
@@ -100,6 +104,7 @@ namespace HW1
             {
                 fnValidInfo.Content = string.Empty;
             }
+
             return true;
         }
 
@@ -107,9 +112,10 @@ namespace HW1
         {
             if (lnTextBox.Text.Equals(string.Empty))
             {
-                lnValidInfo.Content = "Пустая запись";
+                lnValidInfo.Content = "Empty entry";
                 return false;
             }
+
             if (lnTextBox.Text.Length > 254 || !IsOnlyLetters(lnTextBox.Text)) // only letters, length < 255 symbols
             {
                 lnValidInfo.Content = "Only letters and length < 255 symbols";
@@ -118,6 +124,7 @@ namespace HW1
             {
                 lnValidInfo.Content = string.Empty;
             }
+
             return true;
         }
 
@@ -125,12 +132,13 @@ namespace HW1
         {
             if (bdTextBox.Text.Equals(string.Empty))
             {
-                bdValidInfo.Content = "Пустая запись";
+                bdValidInfo.Content = "Empty entry";
                 return false;
             }
+
             if (!DateTime.TryParse(bdTextBox.Text, out DateTime date) || !IsDateValid(bdTextBox.Text))
             {
-                bdValidInfo.Content = "Неверный формат данных. Требуется ДД/ММ/ГГГГ";
+                bdValidInfo.Content = "Invalid data format. Required ДД/ММ/ГГГГ";
                 return false;
             }
             else if (0 < date.Day && date.Day < 32 || 0 < date.Month && date.Month < 13 || 1900 < date.Year && date.Year < DateTime.Now.Year) //0 < day < 32, 0 < month < 13, 1900 < year < current year
@@ -142,6 +150,7 @@ namespace HW1
                 bdValidInfo.Content = "0 < day < 32, 0 < month < 13, 1900 < year < current year";
                 return false;
             }
+
             return true;
         }
 
@@ -149,15 +158,18 @@ namespace HW1
         {
             if (gTextBox.Text.Equals(string.Empty))
             {
-                gValidInfo.Content = "Пустая запись";
+                gValidInfo.Content = "Empty entry";
                 return false;
             }
+
             if (gTextBox.Text.Equals("male") || gTextBox.Text.Equals("female"))
             {
                 gValidInfo.Content = string.Empty;
                 return true;
             }
-            gValidInfo.Content = "only male or female";
+
+            gValidInfo.Content = "Only male or female";
+
             return false;
         }
 
@@ -165,17 +177,18 @@ namespace HW1
         {
             if (eTextBox.Text.Equals(string.Empty))
             {
-                eValidInfo.Content = "Пустая запись";
+                eValidInfo.Content = "Empty entry";
                 return false;
             }
             if (eTextBox.Text.Length > 254 || !eTextBox.Text.Contains('@')) // should contains @, length < 255 symbols
             {
-                eValidInfo.Content = "should contains @, length < 255 symbols";
+                eValidInfo.Content = "Should contains @, length < 255 symbols";
             }
             else
             {
                 eValidInfo.Content = string.Empty;
             }
+
             return true;
         }
 
@@ -183,7 +196,7 @@ namespace HW1
         {
             if (pTextBox.Text.Equals(string.Empty))
             {
-                pValidInfo.Content = "Пустая запись";
+                pValidInfo.Content = "Empty entry";
                 return false;
             }
 
@@ -196,6 +209,7 @@ namespace HW1
             {
                 pValidInfo.Content = string.Empty;
             }
+
             return true;
         }
 
@@ -216,6 +230,7 @@ namespace HW1
             {
                 aValidInfo.Content = string.Empty;
             }
+
             return true;
         }
     }
