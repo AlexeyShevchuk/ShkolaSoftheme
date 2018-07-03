@@ -3,17 +3,16 @@ using System.Windows;
 
 namespace HW1
 {
-    /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         Random _rand = new Random();
         int _programValue;
         int _tryLeft;
+
         public MainWindow()
         {
             InitializeComponent();
+
             _programValue = _rand.Next(0, 10);
             _tryLeft = 3;
         }
@@ -22,32 +21,35 @@ namespace HW1
         {
             try
             {
-                var _value = int.Parse(valueTextBox.Text);
-                if (!(_value >= 0 && _value <= 10))
-                    {
-                    throw new ArgumentOutOfRangeException();
+                var value = int.Parse(ValueTextBox.Text);
 
+                if (!(value >= 0 && value <= 10))
+                {
+                    throw new ArgumentOutOfRangeException("Value should be between 0 and 10");
                 }
-                if (_value == _programValue)
+
+                if (value == _programValue)
                 {
                     MessageBox.Show("Поздравляю! Вы угадали!");
                     _programValue = _rand.Next(0, 10);
                     _tryLeft = 3;
-                    tryCount.Content = "Попытки: " + _tryLeft;
+                    TryCount.Content = "Попытки: " + _tryLeft;
                 }
                 else
                 {
-                    tryCount.Content = "Попытки: " + _tryLeft;
+                    _tryLeft--;
+                    TryCount.Content = "Попытки: " + _tryLeft;
                 }
-                _tryLeft--;
-                if (_tryLeft < 1)
+
+                if (_tryLeft >= 1)
                 {
-                    MessageBox.Show("Вы проиграли!");
-                    _programValue = _rand.Next(0, 10);
-                    _tryLeft = 3;
-                    tryCount.Content = "Попытки: " + _tryLeft;
                     return;
                 }
+
+                MessageBox.Show("Вы проиграли!");
+                _programValue = _rand.Next(0, 10);
+                _tryLeft = 3;
+                TryCount.Content = "Попытки: " + _tryLeft;
             }
             catch (FormatException)
             {
@@ -57,6 +59,11 @@ namespace HW1
             {
                 MessageBox.Show("Введите число в диапазоне от 0 до 10.");
             }
+        }
+
+        private void ExitBtnClick(object sender, RoutedEventArgs e)
+        {
+            Close();  
         }
     }
 }
